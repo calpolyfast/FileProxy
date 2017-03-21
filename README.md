@@ -1,6 +1,22 @@
 # FileProxy
 The file proxy/upload gui for our CTF files
 
+## Getting Started
+1. Install node.js
+2. Fork and clone repo.
+3. cd into root directory
+4. Run: ```npm install```
+5. Run: ```npm start```
+
+## Notes
+* Use passportjs-local to check whether or not the user entered the password already
+    * only require password, we will have a default hidden username
+    * It will be middleware as well to check each request to the server on whether they are currently logged in. If not it will redirect to password page
+
+* Hopefully upload files directly browser -> S3 instead of browser -> server -> S3
+
+You can use https://github.com/Alackey/Weatherme as another nodejs example project
+
 ## Configuring Credentials
 
 **Before using this for development, configure credentials.**
