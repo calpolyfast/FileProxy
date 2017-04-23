@@ -10,4 +10,9 @@ router.get('/', (req, res) => {
   });
 });
 
+/* POST auth */
+router.post('/auth', (req, res) => {
+  res.send('auth');
+});
+
 module.exports = router;
