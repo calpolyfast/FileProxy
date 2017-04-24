@@ -4,6 +4,9 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 const routes = require('./routes/index');
 
@@ -12,6 +15,8 @@ const app = express();
 const env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env === 'development';
+
+app.use(express.static('public'));
 
 // view engine setup
 
@@ -24,14 +29,40 @@ nunjucks.configure('views', {
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
-app.use(cookieParser());
-app.use(express.static('public'));
+
+
+// passport
+// app.use(express.session({ secret: 'anything' }));
+app.use(cookieSession({
+  keys: ['anthony'],
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use('/', routes);
+
+// passport config
+const userModel = require('./models/user');
+
+passport.use(new LocalStrategy(
+  (username, password, done) => {
+    if (!userModel.authenticate(password)) {
+      return done(null, false);
+    }
+    return done(null, userModel.user);
+  }));
+passport.serializeUser((user, done) => {
+  done(null, JSON.stringify(user));
+});
+passport.deserializeUser((user, done) => {
+  done(null, JSON.parse(user));
+});
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {

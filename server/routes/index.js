@@ -1,18 +1,44 @@
 const express = require('express');
+const passport = require('passport');
+const userModel = require('../models/user');
 const s3 = require('../s3/s3');
 
 const router = express.Router();
 
-/* GET home page. */
-router.get('/', (req, res) => {
-  s3.getFileURL('ascii-logo.png').then((url) => {
-    res.render('index.html', { name: 'anthony lackey', url });
-  });
+// isAuthenticated middleware checks whether the user is logged in
+function isAuthenticated(req, res, next) {
+  if (req.user === undefined) {
+    res.redirect('/login');
+  } else if (req.user.password === userModel.user.password) {
+    next();
+  } else {
+    res.redirect('/login');
+  }
+}
+
+/* GET file manager page. */
+router.get('/', isAuthenticated, (req, res) => {
+  res.render('index.html', {});
 });
 
-/* POST auth */
-router.post('/auth', (req, res) => {
-  res.send('auth');
+/* GET login page. */
+router.get('/login', (req, res) => {
+  if (req.user) {
+    res.redirect('/');
+  } else {
+    res.render('login.html', {});
+  }
+});
+
+router.post('/login',
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  (req, res) => {
+    res.redirect('/');
+  });
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
 });
 
 module.exports = router;
