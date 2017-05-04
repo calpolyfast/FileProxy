@@ -21,6 +21,20 @@ router.get('/', isAuthenticated, (req, res) => {
   res.render('index.html', {});
 });
 
+/* GET the files in bucket */
+router.get('/files', isAuthenticated, (req, res) => {
+  s3.getFilesInFolder()
+    .then((data) => {
+      res.json(data.Contents);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+
+// Auth and login
+
 /* GET login page. */
 router.get('/login', (req, res) => {
   if (req.user) {

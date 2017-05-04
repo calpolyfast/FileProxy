@@ -1,23 +1,28 @@
- <html>
+<html>
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>CTF Files</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/base.css">
+  <title>CTF Files</title>
+
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/base.css">
 </head>
+
 <body>
-    {% block header %}
-    <div id='header'>
-        <img id='logo' src="img/logo.png">
-        <h1 id='header-title'>CTF Files</h1>
-    </div>
-    {% endblock %}
+  {% block header %}
+  <div id='header'>
+    <img id='logo' src="img/logo.png">
+    <h1 id='header-title'>CTF Files</h1>
+  </div>
+  {% endblock %} 
+  
+  {% block body %}{% endblock %}
 
-    {% block body %}{% endblock %}
-
-    <script src="js/index.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="js/index.js"></script>
 </body>
+
 </html>
