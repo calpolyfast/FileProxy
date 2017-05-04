@@ -1,7 +1,37 @@
 {% extends "base.html" %} 
 
 {% block body %}
-<div id="section-body">
-  <h1 id="">Upload</h1>
+<div id="section-files">
+  <div id="control-btns">
+    <div id="upload-btn" class="index-btn">
+      Upload
+    </div>
+    <div id="create-folder-btn" class="index-btn">
+      Create Folder
+    </div>
+  </div>
+
+  <div id="section-path">
+    <h3 id="current-path">/</h3>
+    <hr>
+  </div>
+
+  <table id="table-files">
+    <tr>
+      <th>File Name</th>
+      <th>Link</th> 
+      <th>Delete</th>
+    </tr>
+    <!--<tr>
+      <td>Jill</td>
+      <td>Smith</td> 
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Eve</td>
+      <td>Jackson</td> 
+      <td>94</td>
+    </tr>-->
+  </table>
 </div>
 {% endblock %}

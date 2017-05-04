@@ -1,42 +1,33 @@
-#header {
-    height: 50px;
+.index-btn {
+    background-color: #4286f4;
+    border: none;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 1.3em;
 }
 
-#logo {
-    width: 50px;
-    height: 50px;
-    float: left;
+#current-path {
+    margin-bottom: 0;
 }
 
-#header-title {
-    display: inline;
-    float: left;
-    margin: 10px 0 0 5px;
+#section-path > hr {
+    margin: 0;
 }
 
-
-#section-body {
-    width: 400px;
-    height: 100px;
-
-    position: absolute;
-    top: -200px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    margin: auto;
-    text-align: center;
+#table-files {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
 }
 
-#password-header {
-    margin: 0 0 10px 0;
+#table-files tr th {
+    padding: 5px 0;
 }
 
-#auth-form > input{
-    width: 390px;
-    height: 40px;
-    font-size: 28px;
-    padding: 0 10px;
-    border: 2px #6A6A6A solid;
+#table-files tr {
+    border-bottom: 1px solid gray;
+}
+
+#table-files tr td {
+    padding: 5px 0;
 }
